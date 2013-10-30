@@ -23,8 +23,12 @@ Journal.Views.PostForm = Backbone.View.extend({
 		if(post.isNew()) {
 	    post.save({}, {
 	      success: function () {
-	        Journal.posts.add(post);
-	      }
+	        that.collection.add(post);
+	      },
+
+				error: function(model, response) {
+					
+				}
 	    });
 			
 			Backbone.history.navigate("", {trigger: true});
@@ -34,8 +38,9 @@ Journal.Views.PostForm = Backbone.View.extend({
 				success: function() {
 					Backbone.history.navigate("", {trigger: true});
 				},
+				
 				error: function(model, response) {
-					debugger
+					
 				}
 			});
 		}

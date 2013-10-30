@@ -11,32 +11,36 @@ Journal.AppRouter = Backbone.Router.extend({
 			collection: Journal.posts
 		});
 
-		$("body").html(indexView.render().$el);
+		$(".sidebar").html(indexView.render().$el);
+		$(".content").empty();
 	},
 	
 	showPostDetail: function(id) {
+		this.showPostIndex();
 		var detailView = new Journal.Views.PostShow({
 			model: Journal.posts.get(id)
 		});
 		
-		$("body").html(detailView.render().$el);
+		$(".content").html(detailView.render().$el);
 	},
 	
 	showEditPost: function(id) {
+		this.showPostIndex();
 		var formView = new Journal.Views.PostForm({
 			model: Journal.posts.get(id)
 		});
 		
-		$("body").html(formView.render().$el)
+		$(".content").html(formView.render().$el)
 	},
 	
 	showNewPost: function() {
+		this.showPostIndex();
 		var post = new Journal.Models.Post();
-		debugger
 		var formView = new Journal.Views.PostForm({
-			model: post
+			model: post,
+			collection: Journal.posts
 		});
 		
-		$("body").html(formView.render().$el)
+		$(".content").html(formView.render().$el)
 	}
 });
