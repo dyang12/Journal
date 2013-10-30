@@ -1,4 +1,5 @@
 Journal.AppRouter = Backbone.Router.extend({
+	
 	routes: {
 		"": "showPostIndex",
 		"posts/new" : "showNewPost",

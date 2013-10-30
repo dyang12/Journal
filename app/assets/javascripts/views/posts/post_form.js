@@ -35,14 +35,13 @@ Journal.Views.PostForm = Backbone.View.extend({
 		}
 		else {
 			post.save({}, {
-				success: function() {
-					Backbone.history.navigate("", {trigger: true});
-				},
-				
 				error: function(model, response) {
-				debugger	
+				debugger
 				}
 			});
+			
+
+			Backbone.history.navigate("", {trigger: true});
 		}
 	}
 })
