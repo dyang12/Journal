@@ -9,7 +9,7 @@ Journal.Views.PostIndex = Backbone.View.extend({
 		"click .delete" : "deletePost"
 	},
 	
-	deletePost: function() {
+	deletePost: function(event) {
 		event.preventDefault();
 		var id = parseInt($(event.target).attr("data-id"));
 		var post = this.collection.get(id);

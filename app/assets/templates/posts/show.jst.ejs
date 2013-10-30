@@ -1,6 +1,8 @@
-<h3>Title: <%= post.escape("title") %></h3>
-<p>Body:</p>
-<p><%= post.escape("body") %></p>
+<h4>Title: </h4>
+<div class="errors"></div>
+<p class="title"><%= post.escape("title") %></p>
+<h4>Body: </h4>
+<p class="body"><%= post.escape("body") %></p>
 <br>
 <a href="#/posts/<%= post.id %>/edit">Edit Post<a>
 <br>

@@ -9,6 +9,7 @@ Journal.Views.PostForm = Backbone.View.extend({
 		var renderedContent = this.template({
 			post: this.model
 		});
+		
 		this.$el.html(renderedContent);
 		return this;
 	},
@@ -24,24 +25,25 @@ Journal.Views.PostForm = Backbone.View.extend({
 	    post.save({}, {
 	      success: function () {
 	        that.collection.add(post);
+			
+					Backbone.history.navigate("", {trigger: true});
 	      },
 
 				error: function(model, response) {
-					debugger
+					$("div .errors").append(response.responseJSON);
 				}
 	    });
-			
-			Backbone.history.navigate("", {trigger: true});
 		}
 		else {
 			post.save({}, {
+	      success: function () {
+					Backbone.history.navigate("", {trigger: true});
+	      },
+				
 				error: function(model, response) {
-				debugger
+					$("div .errors").append(response.responseJSON);
 				}
 			});
-			
-
-			Backbone.history.navigate("", {trigger: true});
 		}
 	}
 })
