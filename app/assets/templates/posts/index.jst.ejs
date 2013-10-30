@@ -1,0 +1,9 @@
+<h1><%= title %></h1>
+
+<ul>
+	<% posts.forEach(function (post) { %>
+		<li class="post">
+			<%= post.escape("title") %>
+		</li>
+	<% }); %>
+</ul>
