@@ -10,4 +10,10 @@ class PostsController < ApplicationController
     @post.save!
     render :json => @post
   end
+  
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    render :json => @post
+  end
 end

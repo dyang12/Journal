@@ -4,6 +4,8 @@
 	<% posts.forEach(function (post) { %>
 		<li class="post">
 			<%= post.escape("title") %>
+			<button type="button" class="delete" data-id="<%= post.id %>">
+				Delete</button>
 		</li>
 	<% }); %>
 </ul>
