@@ -1,0 +1,10 @@
+<h1>Journal Entry</h1>
+<form>
+	<label id="post_title">Title</label>
+	<input type="text" name="post[title]" value="<%= post.escape('title') %>">
+	<br>
+	<label id="post_body">Body</label>
+	<textarea name="post[body]" ><%= post.escape('body') %></textarea>
+
+	<input type="submit" value="Submit">
+</form>
