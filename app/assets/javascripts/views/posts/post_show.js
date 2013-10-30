@@ -3,8 +3,10 @@ Journal.Views.PostShow = Backbone.View.extend({
 	
 	render: function() {
 		var renderedContent = this.template({
-			title: "Journal Entry",
 			post: this.model
 		});
+		
+		this.$el.html(renderedContent);
+		return this;
 	}
 });

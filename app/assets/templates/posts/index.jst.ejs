@@ -3,7 +3,7 @@
 <ul>
 	<% posts.forEach(function (post) { %>
 		<li class="post">
-			<%= post.escape("title") %>
+			<a href="#posts/<%= post.id %>"><%= post.escape("title") %></a>
 			<button type="button" class="delete" data-id="<%= post.id %>">
 				Delete</button>
 		</li>
