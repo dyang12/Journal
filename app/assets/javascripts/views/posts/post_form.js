@@ -27,7 +27,7 @@ Journal.Views.PostForm = Backbone.View.extend({
 	      },
 
 				error: function(model, response) {
-					
+					debugger
 				}
 	    });
 			
@@ -40,7 +40,7 @@ Journal.Views.PostForm = Backbone.View.extend({
 				},
 				
 				error: function(model, response) {
-					
+				debugger	
 				}
 			});
 		}
