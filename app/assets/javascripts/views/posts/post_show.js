@@ -1,6 +1,9 @@
 Journal.Views.PostShow = Backbone.View.extend({
 	initialize: function (options) {
-		this.listenTo(this.model, "remove", this.remove)
+		this.listenTo(this.model, "remove", function () {
+			this.remove();
+			Backbone.history.navigate("", {trigger: true});
+		});
 	},
 	
 	template: JST['posts/show'],
@@ -25,6 +28,8 @@ Journal.Views.PostShow = Backbone.View.extend({
 		errors.forEach(function(error) {
 			$("div .errors").append("<div>" + error + "</div>");
 		});
+		
+		return this.$el
 	},
 	
 	changeToTextBox: function(event) {
@@ -52,6 +57,7 @@ Journal.Views.PostShow = Backbone.View.extend({
 		
 		post.save({}, {
       success: function () {
+				$("div .errors").empty();
 				$("."+ key).html(newAttribute.post[key]);
       },
 			

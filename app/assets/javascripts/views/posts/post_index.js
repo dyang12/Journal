@@ -23,7 +23,6 @@ Journal.Views.PostIndex = Backbone.View.extend({
 		});
 		
 		this.$el.html(renderedContent);
-		this.$el.prepend("<a href=\"#/posts/new\">New Post</a>");
 		return this;
 	}
 });
