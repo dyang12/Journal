@@ -1,6 +1,6 @@
 <h3><%= title %></h3>
 
-<% posts.forEach(function (post) { %>
+<% posts.each(function (post) { %>
 	<div class="post">
 		<a href="#posts/<%= post.id %>"><%= post.escape("title") %></a>
 		<button type="button" class="delete" data-id="<%= post.id %>">

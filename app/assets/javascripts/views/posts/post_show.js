@@ -1,4 +1,8 @@
 Journal.Views.PostShow = Backbone.View.extend({
+	initialize: function (options) {
+		this.listenTo(this.model, "remove", this.remove)
+	},
+	
 	template: JST['posts/show'],
 	
 	events: {
@@ -16,6 +20,13 @@ Journal.Views.PostShow = Backbone.View.extend({
 		return this;
 	},
 	
+	appendErrors: function(errors) {
+		$("div .errors").empty();
+		errors.forEach(function(error) {
+			$("div .errors").append("<div>" + error + "</div>");
+		});
+	},
+	
 	changeToTextBox: function(event) {
 		var data = $(event.currentTarget)
 		var text = data.text();
@@ -26,8 +37,17 @@ Journal.Views.PostShow = Backbone.View.extend({
 	},
 	
 	editPost: function(event) {
+		var that = this;
 		var newAttribute = $(event.target).serializeJSON();
+
 		var key = Object.keys(newAttribute.post)[0];
+		
+		if(newAttribute.post[key].length == 0) {
+			this.appendErrors([key + " cannot be blank"]);
+			
+			return
+		}
+		
 		var post = this.model.set(newAttribute);
 		
 		post.save({}, {
@@ -36,7 +56,7 @@ Journal.Views.PostShow = Backbone.View.extend({
       },
 			
 			error: function(model, response) {
-				$("div .errors").append(response.responseJSON);
+				that.appendErrors(response.responseJSON);
 			}
 		});
 	}

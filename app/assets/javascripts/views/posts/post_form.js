@@ -14,12 +14,24 @@ Journal.Views.PostForm = Backbone.View.extend({
 		return this;
 	},
 	
+	appendErrors: function(errors) {
+		$("div .errors").empty();
+		errors.forEach(function(error) {
+			$("div .errors").append("<div>" + error + "</div>");
+		});
+	},
+	
 	submitForm: function(event) {
 		event.preventDefault();
 		
 		var that = this;
 		var data = $(event.currentTarget).serializeJSON();
 		var post = this.model.set(data.post);
+		
+		if (!post.isValid()) {
+			this.appendErrors(post.validationError);
+			return;
+		}
 		
 		if(post.isNew()) {
 	    post.save({}, {
@@ -30,7 +42,7 @@ Journal.Views.PostForm = Backbone.View.extend({
 	      },
 
 				error: function(model, response) {
-					$("div .errors").append(response.responseJSON);
+					that.appendErrors(response.responseJSON);
 				}
 	    });
 		}
